@@ -15,14 +15,15 @@ export class CalendarComponent implements OnInit {
   private $currentEventMirror: any;
   private eventDragging = false;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     this.$calendar = $('#calendar');
     this.$calendar.weekCalendar({
       timeslotsPerHour: 4,
       timeslotHeight: 20,
-      scrollToHourMillis : 0,
+      scrollToHourMillis: 0,
       height: this.getCalendarHeight,
       eventDrag: this.onEventDrag.bind(this),
       eventDrop: this.onEventDrop.bind(this),
@@ -48,7 +49,8 @@ export class CalendarComponent implements OnInit {
       .clone()
       .css({
         opacity: 0.5,
-        top: Number.parseFloat($element.css('top'))})
+        top: Number.parseFloat($element.css('top'))
+      })
       .addClass('mirror')
       .insertAfter($element);
     this.$currentDraggingEvent = $element;
@@ -69,7 +71,7 @@ export class CalendarComponent implements OnInit {
       let topSlotIndex;
       let bottomSlotIndex;
 
-      this.$timeSlots.each(function() {
+      this.$timeSlots.each(function () {
         const $el = $(this);
         const elY = $el.offset().top;
         if (elY <= draggingEventTop && draggingEventTop <= (elY + $el.outerHeight())) {
@@ -78,7 +80,7 @@ export class CalendarComponent implements OnInit {
         }
       });
 
-      this.$timeSlots.each(function() {
+      this.$timeSlots.each(function () {
         const $el = $(this);
         const elY = $el.offset().top;
         if (elY >= draggingEventBottom && (elY - $el.outerHeight()) <= draggingEventBottom) {
@@ -95,14 +97,42 @@ export class CalendarComponent implements OnInit {
   }
 
   private getTimeString(timeSlotIndex) {
-    const seconds = 15 * timeSlotIndex * 60;
-    const hours   = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds - (hours * 3600)) / 60);
+    const minutes = timeSlotIndex * 15;
+    const startTime = '12:00AM';
+    const timeArr = startTime.split(':');
+    const startHours = Number.parseInt(timeArr[0]);
+    const startMinutes = Number.parseInt(timeArr[1]);
 
-    // if (hours   < 10) {hours   = '0' + hours; }
-    // if (minutes < 10) {minutes = '0' + minutes; }
+    let currentHour = 0;
+    let newHour: any = 0;
+    let newMinutes: any = 0;
+    let newFormat = '';
 
-    return `${hours}:${minutes}`;
+    if (minutes >= 60) {
+      currentHour = Math.floor(minutes / 60);
+    }
+
+    newMinutes = startMinutes + minutes;
+    if (newMinutes >= 60) {
+      newMinutes %= 60;
+      newHour += 1;
+    }
+
+    if (newMinutes < 10) {
+      newMinutes = '0' + newMinutes;
+    }
+
+    newHour = startHours + currentHour;
+    if (newHour >= 12) {
+      (Math.floor(newHour / 12) % 2 === 0) ? newFormat = 'pm' : newFormat = 'am';
+      newHour = newHour % 12;
+    }
+
+    if (newHour < 10) {
+      newHour = '0' + newHour;
+    }
+
+    return `${newHour}:${newMinutes} ${newFormat}`;
   }
 
   public setValue(value) {
