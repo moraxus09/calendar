@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import {CalendarModule} from 'primeng/calendar';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [

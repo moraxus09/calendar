@@ -3,10 +3,13 @@
 <div class="row">
   <div class="column">
     <p-calendar [(ngModel)]="value"  [inline]="true"> </p-calendar>
-    <button (click)="onClickMe()">Click Date!</button></div>
+    <div class="row">
+      <button class="button" (click)="onClickMe()">Go to date</button></div>
+    </div>
   <div class="column">
     <div id="calendar"></div>
   </div>
 </div>
+
 
 

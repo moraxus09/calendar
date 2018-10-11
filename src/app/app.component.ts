@@ -63,6 +63,8 @@ export class AppComponent implements OnInit {
           $(calendar).weekCalendar('removeEvent',calEvent.id);
           return false;
         }
+        alert('You\'ve added a new event. You would capture this event, add the logic for creating a new event with your own fields, data and whatever backend persistence you require.');
+
 
         calEvent.id = calEvent.userId +'_'+ calEvent.start.getTime();
         $(calendar).weekCalendar('updateFreeBusy', {
