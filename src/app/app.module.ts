@@ -1,22 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AccordionModule } from 'primeng/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { CalendarModule } from 'primeng/calendar';
+import { CalendarComponent } from './calendar/calendar.component';
+import {MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule} from '@angular/material';
 
 @NgModule({
   declarations: [
     AppComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
-    AccordionModule,
     BrowserAnimationsModule,
-    CalendarModule,
-    FormsModule
+    FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

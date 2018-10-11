@@ -4,6 +4,7 @@
   padding: 10px;
   height: 300px;
 }
+
 .button {
   background-color: #4CAF50;
   border: none;
@@ -17,3 +18,8 @@
   cursor: pointer;
 }
 
+p-calendar::ng-deep {
+  .ui-datepicker table td > a.ui-state-active {
+    color: #212121;
+  }
+}
