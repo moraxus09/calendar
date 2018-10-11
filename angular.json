@@ -27,9 +27,22 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/jquery-week-calendar/libs/css/smoothness/jquery-ui-1.8.11.custom.css",
+              "src/assets/jquery-week-calendar/jquery.weekcalendar.css",
+              "src/assets/jquery-week-calendar/skins/default.css",
+              "src/assets/jquery-week-calendar/skins/gcalendar.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/nova-light/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/jquery-week-calendar/libs/jquery-1.4.4.min.js",
+              "src/assets/jquery-week-calendar/libs/jquery-ui-1.8.11.custom.min.js",
+              "src/assets/jquery-week-calendar/libs/jquery-ui-i18n.js",
+              "src/assets/jquery-week-calendar/libs/date.js",
+              "src/assets/jquery-week-calendar/jquery.weekcalendar.js",
+            ]
           },
           "configurations": {
             "production": {
