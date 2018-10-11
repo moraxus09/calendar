@@ -89,10 +89,7 @@ export class CalendarComponent implements OnInit {
         }
       });
 
-      const fromMinsTotal = 15 * topSlotIndex;
-      const toMinsTotal = 15 * bottomSlotIndex;
-
-      this.$currentDraggingEvent.find('.wc-time').text(`from: ${this.getTimeString(fromMinsTotal)} to ${this.getTimeString(toMinsTotal)}`);
+      this.$currentDraggingEvent.find('.wc-time').text(`from: ${this.getTimeString(this.getTimeString(topSlotIndex))} to ${this.getTimeString(bottomSlotIndex)}`);
     }
   }
 
