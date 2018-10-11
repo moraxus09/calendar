@@ -75,7 +75,7 @@ export class CalendarComponent implements OnInit {
         const $el = $(this);
         const elY = $el.offset().top;
         if (elY <= draggingEventTop && draggingEventTop <= (elY + $el.outerHeight())) {
-          topSlotIndex = $el.index() + 1;
+          topSlotIndex = $el.index() > 0 ? $el.index() + 1 : $el.index();
           return false;
         }
       });
@@ -84,12 +84,12 @@ export class CalendarComponent implements OnInit {
         const $el = $(this);
         const elY = $el.offset().top;
         if (elY >= draggingEventBottom && (elY - $el.outerHeight()) <= draggingEventBottom) {
-          bottomSlotIndex = $el.index() + 1;
+          bottomSlotIndex = $el.index();
           return false;
         }
       });
 
-      this.$currentDraggingEvent.find('.wc-time').text(`from: ${this.getTimeString(this.getTimeString(topSlotIndex))} to ${this.getTimeString(bottomSlotIndex)}`);
+      this.$currentDraggingEvent.find('.wc-time').text(`${this.getTimeString(topSlotIndex)} to ${this.getTimeString(bottomSlotIndex)}`);
     }
   }
 
@@ -120,9 +120,13 @@ export class CalendarComponent implements OnInit {
     }
 
     newHour = startHours + currentHour;
-    if (newHour >= 12) {
+    if (newHour > 12) {
       (Math.floor(newHour / 12) % 2 === 0) ? newFormat = 'pm' : newFormat = 'am';
       newHour = newHour % 12;
+    }
+
+    if (newHour === 12) {
+      newFormat = 'am';
     }
 
     if (newHour < 10) {
