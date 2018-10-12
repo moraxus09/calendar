@@ -30,7 +30,7 @@ export class CalendarComponent implements OnInit {
       showAsSeparateUser: true,
       displayOddEven: true,
       daysToShow: 7,
-      switchDisplay: {'1 day': 1, '3 next days': 3, 'work week': 5, 'full week': 7},
+      switchDisplay: {'full week': 7},
       headerSeparator: ' ',
       useShortDayNames: true,
     });
@@ -133,7 +133,7 @@ export class CalendarComponent implements OnInit {
       newHour = '0' + newHour;
     }
 
-    return `${newHour}:${newMinutes} ${newFormat}`;
+    return `${newHour}:${newMinutes || '00'} ${newFormat}`;
   }
 
   public setValue(value) {
